@@ -47,7 +47,7 @@ span.fs-4 {
 }
 
 div.image {
-  box-shadow: 1px 0px 1px  rgb(245, 245, 245);
+  box-shadow: 1px 0px 1px  rgb(245, 245, 245, .6);
   border-radius: 16px  ;
   background-repeat: no-repeat;
   background-size: cover;
@@ -177,7 +177,7 @@ body {
  }
  .header {
   text-decoration: none;
-  color:  rgb(245, 245, 245);
+  color:  rgb(26, 32, 28);
   font-size: 35px;
   font-family: monospace;
   justify-content: center;
@@ -186,7 +186,7 @@ body {
   height: 300px;
   margin: 0 auto;
   padding: 25px;
-  background-image: url('https://png.pngtree.com/thumb_back/fw800/background/20220319/pngtree-photo-dead-flowers-of-flowers-image_1042908.jpg');
+  background-image: url('https://cdn.shopify.com/s/files/1/2658/1334/products/J04375.jpg?v=1637638833&width=533');
   background-repeat: no-repeat;
   background-size: cover;
 
