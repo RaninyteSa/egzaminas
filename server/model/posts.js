@@ -21,7 +21,7 @@ const Posts = (sequelize) => {
 
         nuotrauka: {
             type: DataTypes.STRING, //=VARCHAR(255)
-            allowNull: false
+            allowNull: true
         },
 
         kategorija: {

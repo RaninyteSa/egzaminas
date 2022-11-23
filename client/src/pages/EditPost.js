@@ -1,71 +1,61 @@
-import { useEffect, useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 import axios from 'axios'
+import { useNavigate } from "react-router-dom"
 
-const EditPost = () => {
-    const { id } = useParams()
-    const [post, setPost] = useState({
-        pavadinimas: '',
-        autorius: '',
-        nuotrauka: ''
-    })
 
-    const [alert, setAlert] = useState({
-        message: '',
-        status: ''
-    })
+
+const NewPost = () => {
 
     const navigate = useNavigate()
 
-    useEffect(() => {
-        axios.get('/api/posts/' + id)
-        .then(resp => {
-            if(!resp.data) {
-                navigate('/')
-                return
-            }
+    const [postForm, setPostForm] = useState({
+        pavadinimas: '',
+        autorius: '',
+        virselioAutorius: '',
+        ISBN: '',
+        nuotrauka: '',
+        kategorija: ''
+    })
+// const [alert, setAlert] = useState()
+const handleForm = (e) => {
+    setPostForm({...postForm, [e.target.name]: e.target.name === 'photo' ? e.target.files[0] : e.target.value })
 
-            setPost(resp.data)
-        })
-        .catch(error => {
-            console.log(error)
-            navigate('/')
-        })
-    }, [navigate])
+  }
 
-    const handleForm = (e) => {
-        setPost({...post, [e.target.name]: e.target.value})
-    }
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        const form = new FormData()
+        
+        for(const key in postForm) {
+            form.append(key, postForm[key])
+        }
+        // const form = new FormData(e.target)
 
-        axios.put('/api/posts/edit/' + id, post)
-        .then(resp => {
-            setAlert({
-                message: resp.data,
-                status: 'success'
-            })
+        // for(const key in setForm) {
+        //     form.append(key, setForm[key])
+        // }
+        
 
-            window.scrollTo(0, 0)
 
-            setTimeout(() => navigate('/'), 2000)
+        axios.post('/api/posts/',  form)
+        // .then(resp => resp.json())
+        .then(resp => {console.log(resp)
+            
+            navigate('/')
+        
         })
-        .catch(error => {
-            setAlert({
-                message: error.response.data,
-                status: 'danger'
-            })
-        })
+        .catch(error => console.log(error))
+        
 
     }
 
     return (
-        <div className="containerr"> <h1>Redaguoti</h1>
+        <div className="containerr">
+            <h1>Nauja Knyga</h1>
             <form onSubmit={(e) => handleSubmit(e)}>
-               
                 <div className="form-control">
-                <label>Pavadinimas:</label>
+                    <label>Pavadinimas:</label>
                     <input type="text" name="pavadinimas" onChange={(e) => handleForm(e)} />
                 </div>
                 <div className="form-control">
@@ -82,17 +72,16 @@ const EditPost = () => {
                 </div>
                 <div className="form-control">
                     <label>Nuotrauka:</label>
-                    <input type="text" name="nuotrauka" onChange={(e) => handleForm(e)} />
+                    <input type="file" name="nuotrauka" onChange={(e) => handleForm(e)} />
                 </div>
                 <div className="form-control">
                     <label>Kategorija:</label>
                     <input type="text" name="kategorija" onChange={(e) => handleForm(e)} />
                 </div>
                 <button className="btn btn-primary">Siųsti</button>
-                
             </form>
         </div>
     )
 }
 
-export default EditPost
+export default NewPost

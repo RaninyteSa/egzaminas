@@ -39,11 +39,10 @@ const validate = (schema, req, res, next) => {
 }
  export const postValidator = (req, res, next) => {
     const schema = Joi.object({
-        pavadinimas: Joi.string().min(5).max(255).required(),
-        autorius: Joi.string().min(5).max(255).required(),
+        pavadinimas: Joi.string().min().max(255).required(),
+        autorius: Joi.string().min().max(255).required(),
         virselioAutorius: Joi.string(),
-        ISBN: Joi.string(),
-        kategorija: Joi.string(),
+        ISBN: Joi.string()
     })
     validate(schema, req, next)
 }
@@ -70,7 +69,7 @@ export const loginValidator = (req, res, next) => {
 
 export const commentsValidator = (req, res, next) => {
     const schema = Joi.object({
-        comment: Joi.string().min(5).required(),
+        comment: Joi.string().min().required(),
         postId: Joi.number().required()
     })
 

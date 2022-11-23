@@ -78,7 +78,7 @@ const SinglePost = () => {
             <p>Kategorija: {post.kategorija }</p></div>
             {post.comments &&
                     <div className="komentarai-kont">
-                        <h3 className='komentarai'>Vartotojų komentarai</h3>
+                        <h3 className='komentarai'>Vartotojų įvertinimai</h3>
                         {post.comments.map(entry => 
                             <li className='komentarai' key={entry.id}>
                                 {entry.comment}
@@ -88,7 +88,7 @@ const SinglePost = () => {
                 }
             { loggedIn ?
             <div className='komentarai-kont'>
-                <h2 className='komentarai'>Palikite savo komentarą</h2>
+                <h2 className='komentarai'>Palikite savo įvertinimą</h2>
                 {alert.message && (
                         <div className={'my-2 alert alert-' + alert.status}>
                         {alert.message}
@@ -96,16 +96,16 @@ const SinglePost = () => {
                     )}
                 <form onSubmit={ (e) => handleForm(e) }>
                     <div>
-                    <label className='komentarai'>komentaras</label>
+                    <label className='komentarai'>įvertinimas</label>
                     <textarea name='comment' onChange={(e) => setComment(e.target.value)}></textarea>   
                     </div>
                     <div>
-                        <button className='komentarai'>skelbti komentarą</button>
+                        <button className='komentarai'>skelbti įvertinimą</button>
                     </div>
                 </form>
             </div>
             
-           : <div className='komentarai'>'Prisijunkite norėdami palikti komentarą'</div> } 
+           : <div className='komentarai'>'Prisijunkite norėdami palikti įvertinimą'</div> } 
 
 
         </div>

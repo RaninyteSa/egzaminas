@@ -9,7 +9,7 @@ const credentials = {
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'booksdatabase'
+    database: 'books'
 }
 
 try {

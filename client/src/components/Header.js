@@ -8,7 +8,7 @@ const Header = () => {
         <div className="cont">
             <header className="header">
             <Link to="/" className="new">
-                <span className="fs-4">Book register ❤❤❤ </span>
+                <span className="fs-4">Book reservation ❤❤❤ </span>
             </Link>
         
             <ul className="nav nav-pills">
@@ -21,7 +21,7 @@ const Header = () => {
                         <Link to="/admin" className="nav-link" aria-current="page">Administratorius</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/admin/new-post" className="nav-link" aria-current="page">Naujas Straipsnis</Link>
+                        <Link to="/admin/new-post" className="nav-link" aria-current="page">Nauja knyga</Link>
                     </li>
 
                 </>
